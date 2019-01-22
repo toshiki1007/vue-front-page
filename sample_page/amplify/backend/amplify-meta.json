@@ -1,0 +1,26 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "samplepage-20190121093930-authRole",
+      "UnauthRoleArn": "arn:aws:iam::636729331386:role/samplepage-20190121093930-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::636729331386:role/samplepage-20190121093930-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "samplepage-20190121093930-deployment",
+      "UnauthRoleName": "samplepage-20190121093930-unauthRole",
+      "StackName": "samplepage-20190121093930",
+      "StackId": "arn:aws:cloudformation:us-west-2:636729331386:stack/samplepage-20190121093930/73a01e10-1d60-11e9-817d-06c45ca80dba"
+    }
+  },
+  "api": {
+    "msa_api": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "API_KEY",
+        "GraphQLAPIIdOutput": "i2smaxe4t5asjec2r5hx6gagvi",
+        "GraphQLAPIEndpointOutput": "https://6avo22gr7zau3lpr7tfldoam6m.appsync-api.us-west-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-xdjmallrwreu5jartuaya437ny"
+      },
+      "lastPushTimeStamp": "2019-01-22T02:17:05.056Z"
+    }
+  }
+}

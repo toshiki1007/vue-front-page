@@ -1,0 +1,20 @@
+{
+    "projectName": "samplepage",
+    "projectPath": "/home/ec2-user/environment/vue_project/front_page_sample/sample_page",
+    "defaultEditor": "none",
+    "frontendHandler": {
+        "javascript": "/home/ec2-user/.nodebrew/node/v10.15.0/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
+    },
+    "javascript": {
+        "framework": "vue",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "dist",
+            "BuildCommand": "npm run build",
+            "StartCommand": "npm run serve"
+        }
+    },
+    "providers": {
+        "awscloudformation": "/home/ec2-user/.nodebrew/node/v10.15.0/lib/node_modules/@aws-amplify/cli/node_modules/amplify-provider-awscloudformation"
+    }
+}
