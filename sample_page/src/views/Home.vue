@@ -39,7 +39,7 @@
       <v-flex xs4 text-xs-center>
         <h3>Transactions List</h3>
         <v-form>
-          <v-text-field v-model="userId" label="勘定履歴取得ユーザID"></v-text-field>
+          <v-text-field v-model="userId" label="入出金履歴取得ユーザID"></v-text-field>
         </v-form>
         <v-btn round color="primary" @click="getTransactions()">get Transactions</v-btn>
       </v-flex>

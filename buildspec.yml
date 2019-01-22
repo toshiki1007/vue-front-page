@@ -5,3 +5,6 @@ phases:
       - cd sample_page
       - npm install
       - npm run build
+  post_build:
+    commands:
+      - aws s3 cp dist/ s3://msa-app-front-page-sample --recursive
