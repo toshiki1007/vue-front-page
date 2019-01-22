@@ -33,6 +33,9 @@
       <v-flex xs4 />
       <v-flex xs4 text-xs-center>
         <h3>Items List</h3>
+        <v-form>
+          <v-text-field v-model="buyerId" label="購入履歴取得ユーザID"></v-text-field>
+        </v-form>
         <v-btn round color="primary" @click="getItems()">get Items</v-btn>
       </v-flex>
       <v-flex xs4 />
@@ -92,12 +95,17 @@
         price: 1000,
         description: 'sample description',
         userId: '123456',
+        buyerId: '',
         itemDisplay: false
       }
     },
     methods: {
       async getItems() {
-        this.items = await graphQL.getItems()
+        if(this.buyerId == ''){
+          this.items = await graphQL.getItems()
+        }else{
+          this.items = await graphQL.getItemsByBuyerId(this.buyerId)
+        }
         this.transactions = []
         this.newItem = ''
         this.itemDisplay = true

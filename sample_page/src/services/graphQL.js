@@ -7,6 +7,10 @@ export default {
 		const items = await API.graphql(graphqlOperation(queries.listItems))
 		return items.data.listItems.items
 	},
+	async getItemsByBuyerId(buyerId) {
+		const items = await API.graphql(graphqlOperation(queries.listItemsByBuyerIdIndex, { buyerId: buyerId }))
+		return items.data.listItemsByBuyerIdIndex.items
+	},
 	async putItem(sellerId, itemName, author, price, description, itemImage) {
 		const itemDetail = {
 			sellerId: sellerId,
