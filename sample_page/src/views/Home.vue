@@ -1,11 +1,15 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex xs4 />
+      <v-flex xs4 text-xs-left>
+        <h3>Login User</h3>
+        <v-form>
+          <v-text-field v-model="userId" label="ログインユーザID"></v-text-field>
+        </v-form>
+      </v-flex>
       <v-flex xs4 text-xs-center>
         <h3>New Item</h3>
         <v-form>
-          <v-text-field v-model="sellerId" label="出品者ID"></v-text-field>
           <v-text-field v-model="itemName" label="商品名"></v-text-field>
           <v-text-field v-model="author" label="著者"></v-text-field>
           <v-text-field v-model="price" label="金額"></v-text-field>
@@ -33,18 +37,13 @@
       <v-flex xs4 />
       <v-flex xs4 text-xs-center>
         <h3>Items List</h3>
-        <v-form>
-          <v-text-field v-model="buyerId" label="購入履歴取得ユーザID"></v-text-field>
-        </v-form>
-        <v-btn round color="primary" @click="getItems()">get Items</v-btn>
+        <v-btn round color="primary" @click="getItems()">get All Items</v-btn>
+        <v-btn round color="primary" @click="getPurchaseHistory()">get Purchase History</v-btn>
       </v-flex>
       <v-flex xs4 />
       <v-flex xs4 text-xs-center>
         <h3>Transactions List</h3>
-        <v-form>
-          <v-text-field v-model="userId" label="入出金履歴取得ユーザID"></v-text-field>
-        </v-form>
-        <v-btn round color="primary" @click="getTransactions()">get Transactions</v-btn>
+        <v-btn round color="primary" @click="getTransactions()">get Transactions History</v-btn>
       </v-flex>
       <v-flex xs4 v-for="(item, index) in items" :key="index" text-xs-left>
         <v-card>
@@ -89,29 +88,29 @@
         items: [],
         transactions: [],
         newItem: '',
-        sellerId: '123456',
         itemName: 'sample item name',
         author: 'sample author',
         price: 1000,
         description: 'sample description',
         userId: '123456',
-        buyerId: '',
         itemDisplay: false
       }
     },
     methods: {
       async getItems() {
-        if(this.buyerId == ''){
-          this.items = await graphQL.getItems()
-        }else{
-          this.items = await graphQL.getItemsByBuyerId(this.buyerId)
-        }
+        this.items = await graphQL.getItems()
+        this.transactions = []
+        this.newItem = ''
+        this.itemDisplay = true
+      },
+      async getPurchaseHistory() {
+        this.items = await graphQL.getItemsByBuyerId(this.userId)
         this.transactions = []
         this.newItem = ''
         this.itemDisplay = true
       },
       async putItem() {
-        this.newItem = await graphQL.putItem(this.sellerId, this.itemName, this.author, this.price, this.description, 'sample itemimage')
+        this.newItem = await graphQL.putItem(this.userId, this.itemName, this.author, this.price, this.description, 'sample itemimage')
         if (this.itemDisplay) {
           this.items = await graphQL.getItems()
         }
