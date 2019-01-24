@@ -94,3 +94,10 @@ export const listTransactions = `query ListTransactions($userId: String!) {
   }
 }
 `;
+export const getWallet = `query GetWallet($userId: String!) {
+  getWallet(userId: $userId) {
+    walletId
+    balance
+  }
+}
+`;
