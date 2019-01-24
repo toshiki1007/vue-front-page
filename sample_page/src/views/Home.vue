@@ -21,10 +21,9 @@
         </v-form>
         <v-btn round color="primary" @click="putItem()">create Items</v-btn>
       </v-flex>
-      <v-flex xs4 />
-      <v-flex xs4 />
       <v-flex xs4 text-xs-left>
           <v-card v-show="newItem!=''">
+              <v-card-title>Created</v-card-title>
               <v-card-text>
                 <span>商品ID : {{ newItem.itemId }}</span><br>
                 <span>購入者ID : {{ newItem.buyerId }}</span><br>
@@ -38,7 +37,6 @@
               </v-card-text>
           </v-card>
       </v-flex>
-      <v-flex xs4 />
       <v-flex xs4 text-xs-center>
         <h3>Items List</h3>
         <v-btn round color="primary" @click="getItems()">get All Items</v-btn>
