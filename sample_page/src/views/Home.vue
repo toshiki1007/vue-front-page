@@ -58,6 +58,9 @@
               <span>登録日 : {{ item.registerDate }}</span><br>
               <span>売却日 : {{ item.sellingDate }}</span>
             </div>
+            <div class="item_button">
+              <v-btn v-if="item.sellerId != userId && item.sellingDate === '9999-99-99'" round color="primary" @click="purchaseItem(item.itemId)">Purchase</v-btn>
+            </div>
         </v-card>
       </v-flex>
       <v-flex xs4 v-for="(transaction, index) in transactions" :key="index" text-xs-left>
@@ -120,8 +123,26 @@
         this.items = []
         this.newItem = ''
         this.itemDisplay = false
+      },
+      async purchaseItem(itemId) {
+        const result = await graphQL.purchase(this.userId, itemId)
+        if (result.statusCode == 400) {
+          alert(result.errorMessage)
+        }
+        else {
+          alert("購入完了")
+          this.items = await graphQL.getItems()
+        }
       }
     },
     async mounted() {}
   }
 </script>
+
+<style>
+  .item_button {
+    height: 50px;
+    float: left;
+    text-align: right;
+  }
+</style>

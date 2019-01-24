@@ -25,6 +25,11 @@ export default {
 	},
 	async getTransactions(userId) {
 		const transactions = await API.graphql(graphqlOperation(queries.listTransactions, { userId: userId }))
+		alert(transactions)
 		return transactions.data.listTransactions.transactions
-	}
+	},
+	async purchase(userId, itemId) {
+		const item = await API.graphql(graphqlOperation(mutations.purchaseItem, { userId: userId, itemId: itemId }))
+		return item.data.purchaseItem
+	},
 }
