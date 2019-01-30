@@ -32,7 +32,7 @@ export default {
 		return item.data.purchaseItem
 	},
 	async remittance(userId, remitterId, amount) {
-		const result = await API.graphql(graphqlOperation(mutations.updateBalance, { userId: userId, tradingUserId: remitterId, price: amount, typeFlg: '0' }))
+		const result = await API.graphql(graphqlOperation(mutations.updateBalance, { userId: userId, tradingUserId: remitterId, price: amount, typeFlg: '1' }))
 		return result.data.updateBalance
 	},
 	async getWallet(userId) {
