@@ -10,8 +10,11 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0-rc.1",
     "aws-amplify": "^1.1.19",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.1.0",
     "uuid": "^3.3.2",
     "vue": "^2.5.21",
+    "vue-property-decorator": "^7.3.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.3.0"
   },

@@ -38,5 +38,17 @@ export default {
 	async getWallet(userId) {
 		const wallet = await API.graphql(graphqlOperation(queries.getWallet, { userId: userId }))
 		return wallet.data.getWallet
-	}
+	},
+	async createUser(userId, email) {
+		const userDetail = {
+			userId: userId,
+			mail: email
+		}
+		const user = await API.graphql(graphqlOperation(mutations.createUser, { input: userDetail }))
+		return user.data.createUser
+	},
+	async createWallet(userId) {
+		const wallet = await API.graphql(graphqlOperation(mutations.createWallet, { userId: userId }))
+		return wallet.data.createWallet
+	},
 }

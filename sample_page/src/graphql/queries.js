@@ -101,3 +101,22 @@ export const getWallet = `query GetWallet($userId: String!) {
   }
 }
 `;
+export const getUser = `query GetUser($userId: String!) {
+  getUser(userId: $userId) {
+    userId
+  }
+}
+`;
+export const listUsers = `query ListUsers(
+  $filter: TableUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      userId
+    }
+    nextToken
+  }
+}
+`;

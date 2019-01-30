@@ -56,3 +56,28 @@ export const purchaseItem = `mutation PurchaseItem($userId: String!, $itemId: St
   }
 }
 `;
+export const createUser = `mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    userId
+  }
+}
+`;
+export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    userId
+  }
+}
+`;
+export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
+  deleteUser(input: $input) {
+    userId
+  }
+}
+`;
+export const createWallet = `mutation CreateWallet($userId: String!) {
+  createWallet(userId: $userId) {
+    walletId
+    balance
+  }
+}
+`;

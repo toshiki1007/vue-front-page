@@ -2,14 +2,12 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs4 text-xs-left>
-        <h3>Login User</h3>
-        <v-form>
-          <v-text-field v-model="userId" label="ログインユーザID"></v-text-field>
-        </v-form>
+        <h3>Login User Info</h3>
+        <p>ログインユーザID ： {{userId}}</p>
         <p>ウォレットID ： {{wallet.walletId}}</p>
         <p>ウォレット残高 ： {{wallet.balance}}</p>
         <br>
-        <v-btn round color="primary" @click="changeUser()">change User</v-btn>
+        <v-btn round color="primary" @click="signOut()">sign Out</v-btn>
       </v-flex>
       <v-flex xs4 text-xs-center>
         <h3>New Item</h3>
@@ -92,6 +90,9 @@
 
 <script>
   import graphQL from '../services/graphQL.js'
+  import { Auth } from "aws-amplify";
+  import router from "@/router";
+
 
   export default {
     name: 'Home',
@@ -104,9 +105,9 @@
         author: 'sample author',
         price: 1000,
         description: 'sample description',
-        userId: '123456',
+        userId: '',
         isItemDisplay: false,
-        remitteeId: 'abcdefg',
+        remitteeId: '',
         amount: 1000,
         wallet: ''
       }
@@ -166,10 +167,34 @@
         this.newItem = ''
         this.isItemDisplay = true
         this.wallet = await graphQL.getWallet(this.userId)
+      },
+      async signOut() {
+        Auth.signOut().then(data => {
+          return router.push("/signIn");
+        }).catch(err => {
+          console.error(err);
+        });
+      },
+      async getWallet(userName) {
+        this.wallet = await graphQL.getWallet(this.userId)
+      },
+      async firstGetWallet(userName) {
+        await (this.userId = userName)
+        await (this.wallet = await graphQL.getWallet(this.userId))
       }
     },
     async mounted() {
-      this.wallet = await graphQL.getWallet(this.userId)
+      Auth.currentAuthenticatedUser()
+        .then(user => {
+          this.firstGetWallet(user.username);
+        })
+        .catch(err => {
+          console.log(err);
+          return router.push("/signIn");
+        })
+
+
+
     }
   }
 </script>
